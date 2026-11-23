@@ -1,5 +1,7 @@
+"use client";
+
 import React from "react";
-import { ArrowRight, Phone } from "lucide-react";
+import { ArrowRight, Phone, Shield, Zap, Server } from "lucide-react";
 
 interface EnterpriseProps {
   onOpenOrder: (planName?: string) => void;
@@ -8,78 +10,101 @@ interface EnterpriseProps {
 export default function EnterpriseSection({ onOpenOrder }: EnterpriseProps) {
   const corporatePerks = [
     {
-      num: "01",
-      title: "Dedicated 1:1 Symmetrical CIR",
-      desc: "Committed Information Rate exclusively provisioned for your organization with zero peak-hour jitter or congestion.",
+      icon: Zap,
+      stat: "1:1 CIR",
+      title: "Guaranteed Bandwidth",
+      desc: "Committed Information Rate exclusively provisioned for your organization with zero congestion.",
     },
     {
-      num: "02",
-      title: "Dual-Ring Underground Redundancy",
-      desc: "Automatic failover across distinct physical optical rings so your banking or cloud operations never drop.",
+      icon: Shield,
+      stat: "99.99%",
+      title: "Dual-Ring Redundancy",
+      desc: "Automatic optical failover across distinct physical routes so banking and cloud operations never drop.",
     },
     {
-      num: "03",
-      title: "Static IPv4 / IPv6 Subnets & BGP",
-      desc: "Tailored routing configuration, public static IP pools, and direct cross-connect to major data centers in Nepal.",
+      icon: Server,
+      stat: "10 Gbps+",
+      title: "Static IP & BGP Routing",
+      desc: "Public static IPv4/IPv6 blocks and direct cross-connect to Nepal's Tier-3 data centers.",
     },
   ];
 
   return (
-    <section className="py-24 bg-white" id="enterprise">
+    <section className="py-20 sm:py-28 bg-white" id="enterprise">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="rounded-3xl bg-[#0F172A] text-white p-8 sm:p-14 lg:p-16 relative overflow-hidden shadow-2xl">
+        <div className="rounded-3xl bg-[#0B0F19] text-white p-8 sm:p-14 lg:p-16 relative overflow-hidden shadow-2xl border border-white/10">
+          
           {/* Subtle Ambient glow */}
-          <div className="absolute top-0 right-0 w-80 h-80 bg-[#E5440C]/15 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-0 right-0 w-96 h-96 bg-[#E5440C]/20 rounded-full blur-[120px] pointer-events-none" />
 
           <div className="relative z-10">
-            <div className="text-xs font-bold tracking-widest text-[#FF7A45] uppercase mb-3">
-              ENTERPRISE & MISSION-CRITICAL
+            {/* Top Tag */}
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-[#FF7A45] text-xs font-black uppercase tracking-wider mb-4">
+              <span>ENTERPRISE & MISSION-CRITICAL</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal text-white max-w-2xl mb-4">
-              <span className="font-sans font-bold">Built for</span>{" "}
-              <span className="font-serif italic text-[#FF8F68]">Mission-Critical</span>{" "}
-              <span className="font-sans font-bold">Corporate Infrastructure</span>
+
+            {/* Massive Punchy Headline */}
+            <h2 className="text-4xl sm:text-6xl font-black text-white max-w-3xl leading-[1.02] mb-4">
+              DEDICATED LEASED <br />
+              <span className="font-serif italic text-[#FF8F68] font-normal">
+                CORPORATE FIBER.
+              </span>
             </h2>
-            <p className="text-base text-slate-300 max-w-2xl leading-relaxed mb-12">
-              Empower your corporate office, fintech branch, hospital, or data center with WebSurfer’s dedicated leased line infrastructure backed by an uncompromising 99.99% SLA.
+
+            <p className="text-base sm:text-lg text-slate-300 max-w-2xl font-medium mb-12">
+              Powering banks, fintech hubs, healthcare, and enterprises across Nepal with uncompromising optical SLAs.
             </p>
 
-            {/* 3 Pillars */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-              {corporatePerks.map((perk) => (
-                <div key={perk.num} className="flex flex-col">
-                  <div className="text-xl font-mono-num font-extrabold text-[#E5440C] mb-2">
-                    {perk.num}
+            {/* 3 High-Impact Stat Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+              {corporatePerks.map((perk) => {
+                const Icon = perk.icon;
+                return (
+                  <div
+                    key={perk.title}
+                    className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-[#E5440C]/50 transition-all flex flex-col justify-between"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="text-3xl font-mono-num font-black text-[#FF7A45]">
+                          {perk.stat}
+                        </div>
+                        <div className="w-9 h-9 rounded-xl bg-white/10 text-[#FF7A45] flex items-center justify-center">
+                          <Icon className="w-5 h-5" />
+                        </div>
+                      </div>
+                      <h4 className="text-base font-black text-white mb-2">
+                        {perk.title}
+                      </h4>
+                      <p className="text-xs text-slate-400 leading-relaxed font-medium">
+                        {perk.desc}
+                      </p>
+                    </div>
                   </div>
-                  <h4 className="text-lg font-bold text-white mb-2">
-                    {perk.title}
-                  </h4>
-                  <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
-                    {perk.desc}
-                  </p>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
             {/* CTAs */}
             <div className="flex items-center gap-4 flex-wrap">
               <button
                 onClick={() => onOpenOrder("Corporate Leased Line")}
-                className="inline-flex items-center gap-2 bg-[#E5440C] hover:bg-[#CC3B08] text-white text-sm font-semibold px-6 py-3.5 rounded-full shadow-lg transition-all cursor-pointer"
+                className="inline-flex items-center gap-2.5 bg-[#E5440C] hover:bg-[#CC3B08] text-white text-sm font-bold px-8 py-4 rounded-full shadow-xl shadow-[#E5440C]/30 transition-all cursor-pointer"
               >
-                <span>Request Enterprise Consultation</span>
+                <span>Enterprise Consultation</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
 
               <a
                 href="tel:015970222"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full border border-white/20 text-white text-sm font-semibold hover:bg-white/10 transition-all"
+                className="inline-flex items-center gap-2.5 px-6 py-4 rounded-full border border-white/20 text-white text-sm font-bold hover:bg-white/10 transition-all"
               >
                 <Phone className="w-4 h-4 text-[#FF7A45]" />
-                <span>Call Enterprise Desk: 01-5970222</span>
+                <span>NOC Hotline: 01-5970222</span>
               </a>
             </div>
           </div>
+
         </div>
       </div>
     </section>
