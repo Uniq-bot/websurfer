@@ -21,7 +21,7 @@ export default function Hero({ onOpenOrder }: any) {
       <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-gradient-to-b from-[#E5440C]/10 via-[#FF7A45]/5 to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
       <div className="absolute -top-20 -left-20 w-[450px] h-[450px] bg-amber-500/5 rounded-full blur-3xl pointer-events-none -z-10" />
 
-      <div className="max-w-7xl mx-auto px-6 mt-20">
+      <div className="max-w-7xl mx-auto px-6 md:mt-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
           {/* Left Column: Big Bold Typography & High-Impact Perks */}
